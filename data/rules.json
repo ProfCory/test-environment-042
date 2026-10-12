@@ -1,0 +1,51 @@
+{
+  "start": {
+    "cash": 40,
+    "items": [
+      { "item": "id_fake", "count": 1 },
+      { "item": "phone_burner", "count": 1 }
+    ]
+  },
+  "economy": {
+    "bankOverdraftLimit": -5000,
+    "collectorsStopAtBalance": 0,
+    "cryptoStartRate": 250,
+    "cryptoDailyVolatility": 0.08,
+    "cryptoMinRate": 60,
+    "cryptoMaxRate": 900,
+    "launderFeeMin": 0.15,
+    "launderFeeMax": 0.35,
+    "orderDeliveryFee": 15,
+    "orderMarkup": 0.10
+  },
+  "death": {
+    "hospitalBill": 250,
+    "respawnTag": "service.medical"
+  },
+  "arrest": {
+    "bookingFee": 100,
+    "impoundFee": 500,
+    "bondsmanCap": 1000,
+    "copRepPerArrest": -10,
+    "copRepFlaggedIdPenalty": -25,
+    "permanentStarCopRep": -60,
+    "respawnTag": "service.police"
+  },
+  "dice": {
+    "nat20AlwaysSucceeds": true,
+    "nat1AlwaysFails": true,
+    "showDcOnScreen": true
+  },
+  "skills": {
+    "skills": [ "lockpicking", "brute", "hotwire", "search", "hacking", "mechanics", "bluff" ],
+    "levelThresholds": [ 60, 150, 300, 550, 900 ],
+    "successXpPerDc": 1.0,
+    "failXpFraction": 0.34
+  },
+  "stolenCarDump": {
+    "cryptoMin": 0.02,
+    "cryptoMax": 0.08,
+    "cooldownMinutes": 45,
+    "locationTag": "dump.stolen_car"
+  }
+}

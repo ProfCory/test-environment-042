@@ -1,4 +1,6 @@
-# Another Life (SP): Design v0.1
+# Another Life (SP): Design v0.2
+
+> **v0.2 changes:** character creator + ID photo, starting outfit, death/arrest/debt rules (§4a), dice overlay and practice-based skills (§8), crash pads as exterior pins (§3), phone ride/delivery services (§11), stolen-car dumps (§8). M0 skeleton built.
 
 > A single-player GTA V story-mode mod built on ScriptHookVDotNet. You arrive at LSIA with nothing but a fake ID and a phone, running from something back home. You take gig-app work, keep your head down, get legitimate and move up, or you don't.
 >
@@ -20,17 +22,19 @@
 
 | Step | What happens |
 |---|---|
-| 1. Arrival | Spawn at LSIA arrivals as a custom freemode character (male/female pick). Story characters are hidden. $0 cash, no bank card. |
-| 2. Inventory | **Fake ID** (item), a burner phone, the clothes you're in, $40 in your pocket from "a friend". |
-| 3. First text | *Unknown number:* "Heard you made it. Got a place for you. Pick one, can't hold them long." Three crash pads are offered as map markers. |
-| 4. Choose a crash pad | See §3. You get the keys and a beater on the lot. |
-| 5. Install the gig app | Texted link → **GigNow** contact appears on the phone. First jobs are unlocked. |
-| 6. Tutorial by text | Short texts for the first delivery, first fare, first meal and the first "lost my keys" moment. |
+| 1. Character | Simple creator, mugshot style: male/female, face preset, skin, hair and hair color, eye color. A camera **flash** takes the photo for your fake ID. |
+| 2. Arrival | Spawn at LSIA arrivals as that freemode character. Story characters are hidden. No bank account, no card. |
+| 3. Inventory | **Fake ID** (with your photo), a burner phone, $40 in your pocket from "a friend". Clothes: grey sweats, a plain T-shirt and white canvas sneakers. Everything else you buy. |
+| 4. First text | *Unknown number:* "Heard you made it. Got a place for you. Pick one, can't hold them long." Three crash pads are offered as map markers. |
+| 5. Choose a crash pad | See §3. You get the keys and a beater on the lot. |
+| 6. Install the gig app | Texted link → **GigNow** contact appears on the phone. First jobs are unlocked. |
+| 7. Tutorial by text | Short texts for the first delivery, first fare, first meal and the first "lost my keys" moment. |
 
 ### Fake ID
 
 - Lets you sign up for the gig apps and rent the crash pad.
-- Police **ID check** during a stop: a d20 roll against the ID's quality. Fail and your heat goes up and the fake ID is confiscated.
+- Police **ID check** during a stop: a d20 `bluff` check. Fail and your heat goes up.
+- **Arrested** (or killed by cops): the fake ID is **flagged**. Every cop treats you worse (−25 cop rep) until you buy a replacement. See §4a.
 - Better fakes can be bought for crypto. The real path is legitimization (§5).
 
 ---
@@ -52,7 +56,7 @@ Each crash pad has:
 - **Workbench**: repair (costs parts), basic tune-up, strip stolen cars for parts.
 - **Stash**: an item storage box.
 
-**Interiors.** v1 uses exterior lots with marker interactions (bed, bench and stash as on-foot markers in the bay). Real interiors (biker clubhouse and garage IPLs from the online map data, loaded in story mode) come in a later milestone; story-mode IPL loading works but needs per-build testing.
+**Interiors: none.** Every place is an exterior pin (a "rabbit hole"): walk to the marker for the bed, workbench, stash or car spot and press a key. That's settled for v1; no IPL interiors.
 
 **Buying up.** Later you can rent or buy apartments, houses, a proper shop or a garage. Each is a JSON entry with a price, storage, garage slots, a heat modifier and the currency allowed (legal property needs cash or bank, not crypto).
 
@@ -68,6 +72,39 @@ Each crash pad has:
 
 - **Laundering:** crypto → cash at a crypto exchange or shady ATM. The fee is 15–35% depending on rep, and every transaction has a heat roll.
 - **Bank account gate:** you can't hold a bank balance until you have **T2 Verified** status. Until then it's cash only, with mugging risk.
+- **Crypto rate** moves once a day (±8%, clamped $60–$900 per coin). Crypto purchases are priced in dollars and converted at the day's rate.
+
+---
+
+## 4a. Death, arrest and debt
+
+### Death
+
+1. **Hospital bill $250.** Paid from the cash on you if you have $250. If not, it goes on your **bank card** (if you have one). With neither, the hospital takes whatever cash you have and writes off the rest.
+2. Then you **lose everything you're carrying** (cash, crypto, tools, food, loot) **except**: bank card, IDs, phone, and keys to things you own.
+3. Respawn at the **nearest hospital**.
+
+### Arrest, or killed by police
+
+1. Respawn at the **nearest police station or jail**.
+2. **Everything you carry is seized**, except bank card, IDs, phone and keys.
+3. Your **fake ID is flagged** (−25 cop rep until replaced). Each arrest also costs −10 cop rep.
+4. **$100 booking fee**: on your card if you have a bank account (it can go into overdraft). No account → a **bail bondsman** covers it.
+5. If you were **driving your own vehicle**, it's impounded at that station: **$500** to get it out.
+6. **Cop rep −60 or worse** (counting the flagged ID): you always have at least **one star** until you fix it.
+
+### Bail bondsman
+
+- Lends up to **$1,000 in total**.
+- While you owe him, his **thugs** turn up and take whatever cash you're carrying until the bond is paid.
+- Owe the full $1,000 and get arrested again: **no bail**. You serve time (a time skip) and the fee is written off.
+
+### Bank overdraft and leg breakers
+
+- Your bank balance can go down to **−$5,000**. Card purchases that would go lower are declined. Hospital bills and booking fees go through anyway.
+- At **−$5,000 or lower**, **leg breakers** start coming. They **don't stop** until your balance is back to **$0**.
+
+All of these numbers live in `rules.json`.
 
 ---
 
@@ -150,6 +187,23 @@ Each app is a phone contact (iFruitAddon2). Open it to see a list of offers. Eac
 - **Advantage**: a good tool, or a natural 20 on your last check (momentum). **Disadvantage**: being wanted.
 - **Natural 1**: the tool breaks, the alarm goes off and you get +2 wanted stars.
 
+### The dice
+
+- An on-screen **d20 overlay**: the **DC** is shown above, the numbers flick through 1–20 and land, then your modifier is added and the result shows pass/fail. Advantage and disadvantage show two dice.
+- **Skills improve with practice.** Every check is tied to a skill: `lockpicking`, `brute`, `hotwire`, `search`, `hacking`, `mechanics`, `bluff`. Each attempt earns that skill XP (DC × 1 on success, a third of that on failure). Your modifier equals your level:
+
+| Level | XP needed | Modifier | Roughly |
+|---|---|---|---|
+| 0 | 0 | +0 | Fresh off the plane |
+| 1 | 60 | +1 | ~5 successful break-ins |
+| 2 | 150 | +2 | |
+| 3 | 300 | +3 | |
+| 4 | 550 | +4 | |
+| 5 | 900 | +5 | A pro |
+
+- **Tools** listed per action in `checks.json` (e.g. a slim jim beats a lockpick set). Carrying one gives advantage; a natural 1 can break it.
+- **Natural 20** always succeeds and gives advantage on your next check. **Natural 1** always fails.
+
 ### Searching
 
 - **Search vehicle** (after entry): d20 check → **keys in the visor** (skip hotwire, and the car isn't flagged stolen for 10 minutes), plus a glovebox/trunk loot table roll (cash, items, rarely a gun).
@@ -160,6 +214,7 @@ Each app is a phone contact (iFruitAddon2). Open it to see a list of offers. Eac
 
 - Stolen cars → **chop shop** (crypto) or **strip at your workbench** (parts and loot).
 - Stolen items → fence or pawn (cash, at a lower rate).
+- **Dump spots**: 3 scrapyards where you leave a stolen car for next to nothing (0.02–0.08 crypto) with a **45 in-game-minute cooldown**. A way to get rid of the evidence, not a living.
 
 ---
 
@@ -205,6 +260,8 @@ Built on **iFruitAddon2** contacts plus picture-message notifications that look 
 | **Garage** | Your vehicles, conditions, locations; mark a car on the map |
 | **Landlord** | Rent due, renew, upgrade |
 | **Mechanic** | Book a tune-up, tow your broken car (costs money) |
+| **Call a ride** | A cab drives to you and takes you to your waypoint; the fare is charged on arrival (cash or card) |
+| **Order** | Delivery of shop items (food, drink, tools, clothes) to where you are or to your crash pad. Shop price **+10% + $15**. Illegal goods are paid in crypto at the day's rate. Fewer shops need to exist on the map. |
 
 Text examples: rent reminders, job offers, "your package is ready", gang threats when rep drops, a fence offering a deal.
 
@@ -246,7 +303,7 @@ Text examples: rent reminders, job offers, "your package is ready", gang threats
 
 | # | Milestone | Done when |
 |---|---|---|
-| **M0** | Skeleton | The DLL loads in story mode; data JSON loads; F9 reload; save/load works; a debug menu |
+| **M0** ✅ built | Skeleton | The DLL loads in story mode; data JSON loads; F9 reload; save/load works; a debug menu; d20 checks with practice; death/arrest/debt rules; real death and arrest detection |
 | **M1** | Arrival + crash pad | Airport spawn as a freemode ped, fake ID, choose 1 of 3 crash pads, beater on the lot, bed saves |
 | **M2** | Economy + phone | Cash/bank/crypto, phone contacts, texts, the status app |
 | **M3** | Gig jobs | GigNow delivery + RideLine fares end-to-end, grading, pay, gig rep |
@@ -261,10 +318,20 @@ Each milestone ships as a build you drop into `GTA V/scripts/`, with a **test ch
 
 ---
 
-## 14. Open questions
+## 14. Decisions log
 
-1. **Character**: freemode character with a simple creator (face presets, hair, clothes), or start from a fixed model and add a creator later?
-2. **Death**: hospital respawn with a bill (cash/bank) and lose carried crypto/items? Or lose only cash?
-3. **Arrest**: jail time skip + fine + confiscated illegal items + lose the fake ID?
-4. **Story mode leftovers**: hide Michael/Franklin/Trevor entirely (yes by default), and block story missions from triggering?
-5. **Difficulty knobs**: should the d20 checks be visible (show DC and roll) or hidden (just success/fail)?
+| Question | Decision |
+|---|---|
+| Character | Simple creator + camera flash for the ID photo. Start in sweats, T-shirt, white canvas sneakers. |
+| Death | §4a: $250 bill (cash, else card, else what you have); lose everything carried except card, IDs, phone, keys. |
+| Arrest | §4a: station/jail respawn, seizure, flagged ID, $100 fee, $500 impound, bondsman up to $1k, permanent star at bad cop rep. |
+| Dice | DC shown, numbers flick and land; skills improve with practice. |
+| Interiors | None; exterior pins only. |
+| Extras | Call-a-ride and delivery orders on the phone; 3 stolen-car dumps with a cooldown. |
+
+### Assumptions to confirm
+
+1. **The phone survives death and arrest.** Everything runs through it, so losing it would lock you out of the game.
+2. **"Killed by cops"** = the killer is a police, SWAT or army ped.
+3. **Hospital bill with no card and less than $250**: they take what cash you have and drop the rest (no debt).
+4. **Coordinates** for the crash pads, Bolingbroke, LSIA arrivals and the dump spots are estimates (marked `verify`). Use F10 → Go to, and Log my position, to fix them.

@@ -1,0 +1,22 @@
+{
+  "actions": [
+    { "id": "vehicle.entry.lockpick", "label": "Pick the lock",      "skill": "lockpicking", "baseDc": 12, "tools": [ "slim_jim", "lockpick" ], "toolGivesAdvantage": true,  "vehicleScaled": true, "natOneWantedStars": 1, "natOneBreaksTool": true },
+    { "id": "vehicle.entry.smash",    "label": "Bust the window",    "skill": "brute",       "baseDc": 11, "vehicleScaled": true, "natOneWantedStars": 2 },
+    { "id": "vehicle.hotwire",        "label": "Hotwire",            "skill": "hotwire",     "baseDc": 14, "tools": [ "screwdriver" ], "toolGivesAdvantage": true,  "vehicleScaled": true, "natOneWantedStars": 1, "natOneBreaksTool": true },
+    { "id": "vehicle.search.keys",    "label": "Check for keys",     "skill": "search",      "baseDc": 15 },
+    { "id": "vehicle.search.loot",    "label": "Search the car",     "skill": "search",      "baseDc": 10 },
+    { "id": "body.search",            "label": "Search them",        "skill": "search",      "baseDc": 8 },
+    { "id": "hack.panel",             "label": "Hack the panel",     "skill": "hacking",     "baseDc": 15, "tools": [ "hack_device" ], "requiresTool": true, "toolGivesAdvantage": true, "natOneWantedStars": 2, "natOneBreaksTool": true },
+    { "id": "mechanic.repair",        "label": "Patch it up",        "skill": "mechanics",   "baseDc": 10, "tools": [ "repair_kit" ], "toolGivesAdvantage": true },
+    { "id": "police.id_check",        "label": "Pass the ID check",  "skill": "bluff",       "baseDc": 12, "natOneWantedStars": 1 }
+  ],
+  "vehicleClassDcOffset": {
+    "0": 0, "1": 0, "2": 1, "3": 0, "4": 1, "5": 2, "6": 3, "7": 6, "8": 1, "9": 1, "10": 0,
+    "11": 0, "12": 0, "13": -2, "14": 1, "15": 3, "16": 3, "17": 0, "18": 6, "19": 6, "20": 4, "21": 3, "22": 0
+  },
+  "valueBumps": [
+    { "minValue": 20000,  "add": 1 },
+    { "minValue": 60000,  "add": 2 },
+    { "minValue": 150000, "add": 3 }
+  ]
+}

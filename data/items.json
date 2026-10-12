@@ -1,0 +1,24 @@
+[
+  { "id": "bank_card",      "label": "Bank card",           "category": "id",    "keepOnDeath": true, "keepOnArrest": true },
+  { "id": "id_fake",        "label": "Fake ID",             "category": "id",    "keepOnDeath": true, "keepOnArrest": true, "illegal": true },
+  { "id": "id_real",        "label": "State ID",            "category": "id",    "keepOnDeath": true, "keepOnArrest": true },
+  { "id": "phone_burner",   "label": "Burner phone",        "category": "phone", "keepOnDeath": true, "keepOnArrest": true },
+  { "id": "key_vehicle",    "label": "Car key",             "category": "key",   "maxStack": 20, "keepOnDeath": true, "keepOnArrest": true },
+  { "id": "key_property",   "label": "Property key",        "category": "key",   "maxStack": 10, "keepOnDeath": true, "keepOnArrest": true },
+
+  { "id": "lockpick",       "label": "Lockpick set",        "category": "tool",  "maxStack": 5,  "illegal": true },
+  { "id": "slim_jim",       "label": "Slim jim",            "category": "tool",  "maxStack": 3,  "illegal": true },
+  { "id": "screwdriver",    "label": "Screwdriver",         "category": "tool",  "maxStack": 3 },
+  { "id": "hack_device",    "label": "Hacking device",      "category": "tool",  "maxStack": 1,  "illegal": true },
+  { "id": "repair_kit",     "label": "Repair kit",          "category": "tool",  "maxStack": 3 },
+
+  { "id": "burger",         "label": "Burger",              "category": "food",  "maxStack": 5 },
+  { "id": "energy_bar",     "label": "Energy bar",          "category": "food",  "maxStack": 10 },
+  { "id": "water",          "label": "Bottled water",       "category": "drink", "maxStack": 10 },
+  { "id": "coffee",         "label": "Coffee",              "category": "drink", "maxStack": 5 },
+
+  { "id": "loot_watch",     "label": "Watch",               "category": "loot",  "maxStack": 10 },
+  { "id": "loot_chain",     "label": "Gold chain",          "category": "loot",  "maxStack": 10 },
+  { "id": "loot_phone",     "label": "Someone's phone",     "category": "loot",  "maxStack": 10 },
+  { "id": "loot_wallet",    "label": "Stolen wallet",       "category": "loot",  "maxStack": 10 }
+]
