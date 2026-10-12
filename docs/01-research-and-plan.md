@@ -88,7 +88,7 @@ src/
 
 | # | Milestone | Done when | Est. |
 |---|---|---|---|
-| **M0** | Skeleton | Template forked; cab drives on a tiny test map; camera follows; desktop + touch input both work | 1 wk |
+| **M0** ✅ | Skeleton | Template forked; cab drives on a tiny test map; camera follows; desktop + touch input both work | 1 wk |
 | **M1** | Fare loop | Hailing pedestrian spawns → stop next to them → board → destination marker → drop → meter pays | 1–2 wk |
 | **M2** | City & traffic | 3×3-district Era I map; AI traffic follows lanes and lights; collisions damage the cab | 2 wk |
 | **M3** | Shift & money | Day clock, shift lease, gas, fatigue, end-of-shift ledger, rent due weekly | 1–2 wk |
