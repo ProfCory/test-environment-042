@@ -81,14 +81,54 @@ namespace AnotherLife.Core.Tests
         }
 
         [Fact]
-        public void LaunderingConvertsAtRateMinusFee ()
+        public void AtmNeedsAccountAndCard ()
         {
             var p = TestData.NewPlayer(data);
-            p.Cash = 0;
+            Assert.False(Economy.AtmDeposit(p, 20, data.Rules.Economy));
+            Assert.Equal(40, p.Cash);
+        }
+
+        [Fact]
+        public void AtmDepositIsFreeAndWithdrawCostsTheFee ()
+        {
+            var p = Banked(0);
+            p.Cash = 100;
+            Assert.True(Economy.AtmDeposit(p, 100, data.Rules.Economy));
+            Assert.Equal(0, p.Cash);
+            Assert.Equal(100, p.Bank);
+
+            Assert.True(Economy.AtmWithdraw(p, 50, data.Rules.Economy));
+            Assert.Equal(50, p.Cash);
+            Assert.Equal(47, p.Bank);
+        }
+
+        [Fact]
+        public void AtmWontPayOutOverdraftAsCash ()
+        {
+            var p = Banked(50);
+            Assert.False(Economy.AtmWithdraw(p, 50, data.Rules.Economy)); // 50 + $3 fee > 50
+            Assert.True(Economy.AtmWithdraw(p, 47, data.Rules.Economy));
+            Assert.Equal(0, p.Bank);
+        }
+
+        [Fact]
+        public void PayphoneWiresCryptoToBankMinusFee ()
+        {
+            var p = Banked(0);
             p.Crypto = 1.0;
             p.CryptoRate = 200;
-            Assert.Equal(150, Economy.Launder(p, 1.0, 0.25));
+            Assert.Equal(170, Economy.PayphoneWire(p, 1.0, 0.15, data.Rules.Economy));
+            Assert.Equal(170, p.Bank);
             Assert.Equal(0, p.Crypto);
+        }
+
+        [Fact]
+        public void PayphoneNeedsABankAccount ()
+        {
+            var p = TestData.NewPlayer(data);
+            p.Crypto = 1.0;
+            Assert.Equal(0, Economy.PayphoneWire(p, 1.0, 0.15, data.Rules.Economy));
+            Assert.Equal(1.0, p.Crypto);
         }
 
         sealed class AlwaysLow : IRandom

@@ -19,10 +19,12 @@
     "cryptoDailyVolatility": 0.08,
     "cryptoMinRate": 60,
     "cryptoMaxRate": 900,
-    "launderFeeMin": 0.15,
-    "launderFeeMax": 0.35,
     "orderDeliveryFee": 15,
-    "orderMarkup": 0.1
+    "orderMarkup": 0.1,
+    "cashFromGameWallet": true,
+    "atmWithdrawFee": 3,
+    "payphoneFeeMin": 0.15,
+    "payphoneFeeMax": 0.35
   },
   "death": {
     "hospitalBill": 250,
@@ -70,5 +72,22 @@
   },
   "hud": {
     "showAddress": true
+  },
+  "interactions": {
+    "range": 1.6,
+    "atmModels": [
+      "prop_atm_01",
+      "prop_atm_02",
+      "prop_atm_03",
+      "prop_fleeca_atm"
+    ],
+    "payphoneModels": [
+      "prop_phonebox_01a",
+      "prop_phonebox_01b",
+      "prop_phonebox_01c",
+      "prop_phonebox_02",
+      "prop_phonebox_03",
+      "prop_phonebox_04"
+    ]
   }
 }

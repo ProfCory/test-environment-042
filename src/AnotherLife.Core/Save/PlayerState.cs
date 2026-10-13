@@ -19,6 +19,8 @@ namespace AnotherLife.Core
         public double Crypto;
         public double CryptoRate;
         public bool CollectorsActive;
+        // False until the game wallet has been seeded from this save (new game) once.
+        public bool WalletSynced;
         public long BondDebt;
 
         public List<ItemStack> Inventory = new List<ItemStack>();

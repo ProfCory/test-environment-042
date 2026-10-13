@@ -11,8 +11,29 @@ Install these into your GTA V folder (the one with `GTA5.exe`), skipping any you
 | Script Hook V | dev-c.com/gtav/scripthookv | `ScriptHookV.dll`, `dinput8.dll` (the ASI loader) |
 | ScriptHookVDotNet 3 (v3.6.0 or newer) | github.com/scripthookvdotnet/scripthookvdotnet/releases | `ScriptHookVDotNet.asi`, `ScriptHookVDotNet2.dll`, `ScriptHookVDotNet3.dll` |
 | .NET Framework 4.8 | Built into Windows 10/11 | — |
+| LemonUI (SHVDN3) | github.com/LemonUIbyLemon/LemonUI/releases | `scripts/LemonUI.SHVDN3.dll` (also shipped in our zip) |
+| **Freemode Identity** 1.1.7+ | gta5-mods.com/scripts/freemode-identity | `FreemodeIdentity.dll` in `scripts/`, its `.asi` shim in the GTA V folder |
+| **Menyoo PC** | gta5-mods.com (Menyoo PC) | Per its readme |
 
 Make a `scripts` folder in the GTA V folder if there isn't one.
+
+### Your character (one time)
+
+1. In story mode, open **Menyoo** → Player Options → Model Changer → `mp_m_freemode_01` (male) or `mp_f_freemode_01` (female).
+2. Build the look in Menyoo (face, hair, skin). Dress them in **grey sweats, a plain T-shirt and white sneakers**; everything else gets bought in-game.
+3. Open **Freemode Identity** (Shift + X), turn the master switch on, and **Save** the look.
+
+### Freemode Identity settings (`FreemodeIdentity.ini`)
+
+Another Life handles death and arrest itself, so turn off Freemode Identity's versions:
+
+```ini
+[Penalties]
+Enabled = False
+Confiscate = False
+```
+
+Keep `[Wallet] Enabled = True`. The wallet **is** your cash in Another Life: vanilla shops, Ammu-Nation and job mods all spend and pay into it. Bank and crypto live in Another Life.
 
 ## 2. Install the mod
 

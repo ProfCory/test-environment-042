@@ -47,6 +47,20 @@ Takes about 15 minutes. Tick each box, and for anything that fails, note what ha
 - [ ] Quit to desktop, relaunch → status shows the same money
 - [ ] Break `rules.json` on purpose (delete a comma), press F9 → a red "Data error" message appears and the game keeps running. Fix it and press F9 → "Data reloaded."
 
+## Wallet, ATMs and payphones (as your freemode character, Freemode Identity on)
+
+- [ ] New game (F10 → Start a new game): the Freemode Identity wallet shows **$40**
+- [ ] Buy something cheap at a vanilla shop → F10 status cash drops by the same amount
+- [ ] F10 `+$100 cash` → the Freemode Identity wallet goes up $100
+- [ ] Switch to Franklin and back: Franklin's own money is never changed by Another Life
+- [ ] Walk up to any ATM → "Press E to use the ATM". With no account → "You don't have an account."
+- [ ] F10 `+$1,000 bank` (opens account, gives card) → ATM shows bank and cash; deposit $20 → cash −20, bank +20
+- [ ] Withdraw $20 → cash +20, bank −23 ($3 fee)
+- [ ] Withdraw more than your balance → "Insufficient funds"
+- [ ] Any payphone → "Press E". With crypto (F10 `+0.1 crypto`) and an account → wire all → bank goes up by coins × rate × 85%
+- [ ] Payphone with no bank account → refuses
+- [ ] Die with a gun → after respawn you have no weapons, and they don't come back a few seconds later
+
 ## Addresses
 
 - [ ] Beside the minimap: `<postal> | <street> | <zone>`, updating as you drive

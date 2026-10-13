@@ -33,6 +33,9 @@ namespace AnotherLife.InGame
         readonly ObjectPool pool = new ObjectPool();
         readonly DebugMenu menu;
         internal readonly AddressHud Address;
+        internal readonly CashBridge Cash;
+        readonly Terminals terminals;
+        int stripWeaponsUntil;
 
         bool wasDead;
         bool wasArrested;
@@ -53,9 +56,13 @@ namespace AnotherLife.InGame
             LoadOrCreateSave();
 
             Address = new AddressHud(this);
+            Cash = new CashBridge(this);
+            terminals = new Terminals(this);
             menu = new DebugMenu(this);
             pool.Add(menu.Root);
             foreach (var sub in menu.SubMenus) pool.Add(sub);
+            pool.Add(terminals.AtmMenu);
+            pool.Add(terminals.PayphoneMenu);
 
             Tick += OnTick;
             KeyDown += OnKeyDown;
@@ -94,8 +101,12 @@ namespace AnotherLife.InGame
         internal void NewGame ()
         {
             Player = SaveStore.NewGame(Data);
+            Cash.Pull(); // seeds the wallet with the starting $40
             SaveNow(quiet: false);
         }
+
+        // Payphone fee: best rate for now; reputation moves it toward the max in M7.
+        internal double PayphoneFee () => Data.Rules.Economy.PayphoneFeeMin;
 
         internal void SaveNow (bool quiet)
         {
@@ -128,7 +139,10 @@ namespace AnotherLife.InGame
             int delta = lastTick == 0 ? 0 : Math.Min(now - lastTick, 1000);
             lastTick = now;
 
+            Cash.Tick(delta);
             Address.Tick(delta);
+            terminals.Tick(delta);
+            StripWeaponsIfPending();
             AdvanceClock(delta);
             WatchDeathAndArrest();
             EnforcePermanentStar(delta);
@@ -196,8 +210,11 @@ namespace AnotherLife.InGame
 
         void OnDied (Vector3 at)
         {
+            Cash.Pull();
             var r = Penalties.ApplyDeath(Player, Data, at.X, at.Y, at.Z);
+            Cash.Push();
             ExpectRespawn(r.Respawn);
+            if (Data.Rules.Death.LoseWeapons) StripWeapons();
             Texts.Death(r);
             Log.Write($"death: bill={r.Bill} cashLost={r.CashLost} crypto={r.CryptoLost} items={r.ItemsLost.Count}");
             SaveNow(quiet: true);
@@ -206,11 +223,26 @@ namespace AnotherLife.InGame
         void OnArrested (Vector3 at)
         {
             // Owned-vehicle tracking arrives in M4; until then nothing is impounded.
+            Cash.Pull();
             var r = Penalties.ApplyArrest(Player, Data, at.X, at.Y, at.Z, drivingOwnedPlate: null);
+            Cash.Push();
             ExpectRespawn(r.Respawn);
+            if (Data.Rules.Arrest.LoseWeapons) StripWeapons();
             Texts.Arrest(r);
             Log.Write($"arrest: cash={r.CashSeized} fee={r.Fee} bond={r.BondTaken} noBail={r.NoBail} star={r.PermanentStar}");
             SaveNow(quiet: true);
+        }
+
+        // Freemode Identity restores its last weapon snapshot when it re-applies your look after a
+        // respawn, so keep clearing weapons for a while until its snapshot catches up.
+        void StripWeapons () => stripWeaponsUntil = Game.GameTime + RespawnTimeoutMs + 10000;
+
+        void StripWeaponsIfPending ()
+        {
+            if (stripWeaponsUntil == 0) return;
+            if (Game.GameTime > stripWeaponsUntil) { stripWeaponsUntil = 0; return; }
+            var ped = Game.Player.Character;
+            if (!ped.IsDead) ped.Weapons.RemoveAll();
         }
 
         void ExpectRespawn (LocationDef at)

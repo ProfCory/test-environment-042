@@ -109,15 +109,35 @@ namespace AnotherLife.Core.Rules
             p.CryptoRate = Math.Max(rules.CryptoMinRate, Math.Min(rules.CryptoMaxRate, p.CryptoRate * (1 + change)));
         }
 
-        // Crypto -> cash at the current rate minus a laundering fee (better rep, lower fee).
-        public static long Launder (PlayerState p, double coins, double feeFraction)
+        // ATM: cash -> bank, free. Needs an account and the card.
+        public static bool AtmDeposit (PlayerState p, long amount, EconomyRules rules)
+        {
+            if (amount <= 0 || !CanUseCard(p) || p.Cash < amount) return false;
+            p.Cash -= amount;
+            Deposit(p, amount, rules);
+            return true;
+        }
+
+        // ATM: bank -> cash, plus a flat fee. You can't withdraw overdraft as cash.
+        public static bool AtmWithdraw (PlayerState p, long amount, EconomyRules rules)
+        {
+            if (amount <= 0 || !CanUseCard(p) || p.Bank < amount + rules.AtmWithdrawFee) return false;
+            p.Bank -= amount + rules.AtmWithdrawFee;
+            p.Cash += amount;
+            UpdateCollectors(p, rules);
+            return true;
+        }
+
+        // Payphone: crypto -> bank at today's rate minus a fee. Needs an account (no card required).
+        // Returns the dollars deposited, or 0 if nothing happened.
+        public static long PayphoneWire (PlayerState p, double coins, double feeFraction, EconomyRules rules)
         {
             coins = Math.Min(coins, p.Crypto);
-            if (coins <= 0) return 0;
-            long cash = (long)Math.Floor(coins * p.CryptoRate * (1 - feeFraction));
+            if (coins <= 0 || !p.HasBankAccount) return 0;
+            long dollars = (long)Math.Floor(coins * p.CryptoRate * (1 - feeFraction));
             p.Crypto -= coins;
-            p.Cash += cash;
-            return cash;
+            Deposit(p, dollars, rules);
+            return dollars;
         }
     }
 }

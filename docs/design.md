@@ -1,5 +1,7 @@
-# Another Life (SP): Design v0.3
+# Another Life (SP): Design v0.4
 
+> **v0.4:** character via **Freemode Identity + Menyoo** (no custom creator); the game wallet is your cash; ATM and payphone rules (§4).
+>
 > **v0.3:** addresses and postal codes (§11a), built into M0.
 >
 > **v0.2 changes:** character creator + ID photo, starting outfit, death/arrest/debt rules (§4a), dice overlay and practice-based skills (§8), crash pads as exterior pins (§3), phone ride/delivery services (§11), stolen-car dumps (§8). M0 skeleton built.
@@ -24,7 +26,7 @@
 
 | Step | What happens |
 |---|---|
-| 1. Character | Simple creator, mugshot style: male/female, face preset, skin, hair and hair color, eye color. A camera **flash** takes the photo for your fake ID. |
+| 1. Character | Your GTA Online-style freemode character, built once in **Menyoo** and kept by **Freemode Identity** (look, weapons, wallet, vanilla shop access). Another Life adds only the camera **flash** that takes the photo for your fake ID. |
 | 2. Arrival | Spawn at LSIA arrivals as that freemode character. Story characters are hidden. No bank account, no card. |
 | 3. Inventory | **Fake ID** (with your photo), a burner phone, $40 in your pocket from "a friend". Clothes: grey sweats, a plain T-shirt and white canvas sneakers. Everything else you buy. |
 | 4. First text | *Unknown number:* "Heard you made it. Got a place for you. Pick one, can't hold them long." Three crash pads are offered as map markers. |
@@ -72,8 +74,10 @@ Each crash pad has:
 | **Bank / card** | Legal purchases: licenses, new cars, insurance, property, tune-ups at real shops | Deposits at ATMs (needs a bank account, which needs a real ID or T2+ approval) |
 | **Crypto** | **Illegal only**: black-market guns, better fake IDs, illegal contracts, fences | Fences, chop shops, illegal contracts, loot |
 
-- **Laundering:** crypto → cash at a crypto exchange or shady ATM. The fee is 15–35% depending on rep, and every transaction has a heat roll.
 - **Bank account gate:** you can't hold a bank balance until you have **T2 Verified** status. Until then it's cash only, with mugging risk.
+- **Cash = the game wallet.** With Freemode Identity spoofing, the game's money *is* your cash, so vanilla clothing stores, Ammu-Nation, mod shops and job mods all spend and pay into it. Bank and crypto are tracked by Another Life. (Only active on the freemode character; Michael/Franklin/Trevor's money is never touched.)
+- **ATMs** (every ATM prop on the map, once you have a bank account and card): cash → bank is free; bank → cash costs a **$3 fee** (the wallet is whole dollars, so not $2.50). No cash withdrawals from overdraft.
+- **Payphones** (every payphone and phone booth): wire **crypto → bank** at today's rate minus **15–35%** (better rep, lower fee). Needs a bank account; no account, no wire.
 - **Crypto rate** moves once a day (±8%, clamped $60–$900 per coin). Crypto purchases are priced in dollars and converted at the day's rate.
 
 ---
@@ -316,7 +320,7 @@ Every spot on the map has an address: **nearest postal + street + zone**, e.g. *
 | # | Milestone | Done when |
 |---|---|---|
 | **M0** ✅ built | Skeleton | The DLL loads in story mode; data JSON loads; F9 reload; save/load works; a debug menu; d20 checks with practice; death/arrest/debt rules; real death and arrest detection |
-| **M1** | Arrival + crash pad | Airport spawn as a freemode ped, fake ID, choose 1 of 3 crash pads, beater on the lot, bed saves |
+| **M1** | Arrival + crash pad | Works with Freemode Identity + Menyoo: ID-photo flash, LSIA arrival scene, "pick a crash pad" text, pins for bed/workbench/stash/car, beater on the lot, bed saves |
 | **M2** | Economy + phone | Cash/bank/crypto, phone contacts, texts, the status app |
 | **M3** | Gig jobs | GigNow delivery + RideLine fares end-to-end, grading, pay, gig rep |
 | **M4** | Vehicles | Ownership, keys, respawn at garage, condition-based handling, tune-up |
@@ -334,7 +338,8 @@ Each milestone ships as a build you drop into `GTA V/scripts/`, with a **test ch
 
 | Question | Decision |
 |---|---|
-| Character | Simple creator + camera flash for the ID photo. Start in sweats, T-shirt, white canvas sneakers. |
+| Character | Freemode Identity + Menyoo build and keep the character; Another Life adds the ID-photo flash. Start in sweats, T-shirt, white sneakers; buy clothes at vanilla stores. |
+| Money | Cash = game wallet (Freemode Identity). ATMs: cash ↔ bank, $3 withdraw fee. Payphones: crypto → bank minus 15–35%. |
 | Death | §4a: $250 bill (cash, else card, else what you have); lose everything carried except card, IDs, phone, keys. |
 | Arrest | §4a: station/jail respawn, seizure, flagged ID, $100 fee, $500 impound, bondsman up to $1k, permanent star at bad cop rep. |
 | Dice | DC shown, numbers flick and land; skills improve with practice. |

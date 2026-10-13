@@ -25,6 +25,15 @@ namespace AnotherLife.Core.Data
         public SkillRules Skills = new SkillRules();
         public DumpRules StolenCarDump = new DumpRules();
         public HudRules Hud = new HudRules();
+        public InteractionRules Interactions = new InteractionRules();
+    }
+
+    // World props that act as ATMs and payphones: any of these models, anywhere on the map.
+    public sealed class InteractionRules
+    {
+        public float Range = 1.6f;
+        public List<string> AtmModels = new List<string>();
+        public List<string> PayphoneModels = new List<string>();
     }
 
     public sealed class HudRules
@@ -55,8 +64,14 @@ namespace AnotherLife.Core.Data
         public double CryptoDailyVolatility = 0.08;
         public double CryptoMinRate = 60;
         public double CryptoMaxRate = 900;
-        public double LaunderFeeMin = 0.15;
-        public double LaunderFeeMax = 0.35;
+        // Cash lives in the game wallet (Freemode Identity) so vanilla shops and job mods use it.
+        // Set false to keep cash inside this mod only.
+        public bool CashFromGameWallet = true;
+        // ATM bank -> cash fee, whole dollars (the game wallet has no cents).
+        public long AtmWithdrawFee = 3;
+        // Payphone crypto -> bank: fee by reputation, best to worst.
+        public double PayphoneFeeMin = 0.15;
+        public double PayphoneFeeMax = 0.35;
         // Phone orders: flat delivery fee plus markup on the shop price.
         public long OrderDeliveryFee = 15;
         public double OrderMarkup = 0.10;
@@ -65,12 +80,14 @@ namespace AnotherLife.Core.Data
     public sealed class DeathRules
     {
         public long HospitalBill = 250;
+        public bool LoseWeapons = true;
         public string RespawnTag = "service.medical";
     }
 
     public sealed class ArrestRules
     {
         public long BookingFee = 100;
+        public bool LoseWeapons = true;
         public long ImpoundFee = 500;
         public long BondsmanCap = 1000;
         public int CopRepPerArrest = -10;

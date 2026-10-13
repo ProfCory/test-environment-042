@@ -100,7 +100,9 @@ namespace AnotherLife.InGame
             var item = new NativeItem(title);
             item.Activated += (s, e) =>
             {
+                main.Cash.Pull();
                 action();
+                main.Cash.Push();
                 if (menu == Root) Rebuild();
             };
             menu.Add(item);
