@@ -3,3 +3,6 @@ obj/
 dist/
 *.user
 .vs/
+
+# Third-party mod binaries kept locally for install (not redistributable)
+docs/files/

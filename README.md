@@ -19,6 +19,8 @@ dotnet test               # rules unit tests
 build/package.sh m0       # -> dist/AnotherLife-m0.zip, unzip into the GTA V folder
 ```
 
+On Windows, `powershell -ExecutionPolicy Bypass -File build\deploy.ps1` tests, builds and copies straight into the GTA V folder (`-GtaDir` or `GTA_DIR` to override the Steam path, `-NoData` to keep in-game JSON edits).
+
 Every push also builds the zip in GitHub Actions (download it from the run's **Artifacts**).
 
 ## Layout

@@ -17,6 +17,10 @@ Install these into your GTA V folder (the one with `GTA5.exe`), skipping any you
 
 Make a `scripts` folder in the GTA V folder if there isn't one.
 
+**Menyoo's Spooner key is F9 by default, which clashes with Another Life's data reload.** In `menyooStuff/menyooConfig.ini` set `SpoonerModeHotkey = 118` (F7).
+
+**Developers:** put the downloaded files in `docs/files/` (gitignored, laid out like the GTA V folder) and run `build\install-prereqs.ps1`. It skips `xinput1_4.dll` (the Enhanced loader) and `NativeTrainer.asi` (F4 clashes with the SHVDN console), and records what it adds in `AnotherLife-prereqs.manifest.txt` so `-Uninstall` removes exactly those files.
+
 ### Your character (one time)
 
 1. In story mode, open **Menyoo** → Player Options → Model Changer → `mp_m_freemode_01` (male) or `mp_f_freemode_01` (female).
