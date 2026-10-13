@@ -4,6 +4,7 @@ A single-player GTA V story-mode life sim built on ScriptHookVDotNet. You land a
 
 - [Design v0.3](docs/design.md)
 - [Install](docs/install.md)
+- [Controls & commands](docs/controls.md)
 - [M0 test checklist](docs/test-checklist-m0.md)
 
 ## Status

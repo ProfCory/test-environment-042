@@ -7,6 +7,16 @@ namespace AnotherLife.InGame
     // Player-facing messages. Plain notifications for M0; phone texts replace these in M2.
     internal static class Texts
     {
+        // Controls cheat sheet as phone-style texts. They stay rereadable in Pause > Brief > Notifications.
+        public static void Controls ()
+        {
+            const string from = "Another Life";
+            Notification.Show(NotificationIcon.Default, from, "Controls 1/4", "~b~F10~s~ Another Life menu. ~b~F9~s~ reload data. ~b~E~s~ at ATMs and payphones.");
+            Notification.Show(NotificationIcon.Default, from, "Controls 2/4", "~b~F8~s~ Menyoo. ~b~F7~s~ Spooner. ~b~F3~s~ free cam. ~b~Shift+X~s~ Freemode Identity.");
+            Notification.Show(NotificationIcon.Default, from, "Controls 3/4", "~b~F4~s~ SHVDN console. ~b~Backspace~s~ backs out of menus.");
+            Notification.Show(NotificationIcon.Default, from, "Controls 4/4", "Reread: Pause > Brief > Notifications. Resend: F10 > Text me the controls.");
+        }
+
         public static void Death (DeathResult r)
         {
             switch (r.Bill)

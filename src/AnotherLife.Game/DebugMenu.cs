@@ -25,6 +25,7 @@ namespace AnotherLife.InGame
             SubMenus.Add(teleports);
 
             Root.Add(status);
+            Add(Root, "Text me the controls", Texts.Controls);
             Add(Root, "+$100 cash", () => main.Player.Cash += 100);
             Add(Root, "+$1,000 bank (opens account, gives card)", () =>
             {

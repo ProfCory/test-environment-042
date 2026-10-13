@@ -36,6 +36,7 @@ namespace AnotherLife.InGame
         internal readonly CashBridge Cash;
         readonly Terminals terminals;
         int stripWeaponsUntil;
+        bool controlsTextPending;   // new saves get the controls texts once the game is on screen
 
         bool wasDead;
         bool wasArrested;
@@ -94,6 +95,7 @@ namespace AnotherLife.InGame
             if (Player == null)
             {
                 Player = SaveStore.NewGame(Data);
+                controlsTextPending = true;
                 Log.Write("new game");
             }
         }
@@ -102,6 +104,7 @@ namespace AnotherLife.InGame
         {
             Player = SaveStore.NewGame(Data);
             Cash.Pull(); // seeds the wallet with the starting $40
+            controlsTextPending = true;
             SaveNow(quiet: false);
         }
 
@@ -143,12 +146,20 @@ namespace AnotherLife.InGame
             Address.Tick(delta);
             terminals.Tick(delta);
             StripWeaponsIfPending();
+            SendControlsIfPending();
             AdvanceClock(delta);
             WatchDeathAndArrest();
             EnforcePermanentStar(delta);
 
             msSinceAutosave += delta;
             if (msSinceAutosave >= AutosaveMs) SaveNow(quiet: true);
+        }
+
+        void SendControlsIfPending ()
+        {
+            if (!controlsTextPending || Game.IsLoading || !GTA.UI.Screen.IsFadedIn || !Game.Player.CanControlCharacter) return;
+            controlsTextPending = false;
+            Texts.Controls();
         }
 
         void AdvanceClock (int deltaMs)

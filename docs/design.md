@@ -268,8 +268,11 @@ Built on **iFruitAddon2** contacts plus picture-message notifications that look 
 | **Mechanic** | Book a tune-up, tow your broken car (costs money) |
 | **Call a ride** | A cab drives to you and takes you to your waypoint; the fare is charged on arrival (cash or card) |
 | **Order** | Delivery of shop items (food, drink, tools, clothes) to where you are or to your crash pad. Shop price **+10% + $15**. Illegal goods are paid in crypto at the day's rate. Fewer shops need to exist on the map. |
+| **Mail** | A saved inbox you can reread: the controls guide, receipts (hospital bills, booking fees, rent, orders), job briefs, licence paperwork, landlord notices. Texts are quick pings; anything you'd want to look up later also lands here. |
 
 Text examples: rent reminders, job offers, "your package is ready", gang threats when rep drops, a fence offering a deal.
+
+Until M2, texts are feed notifications (rereadable in Pause > Brief > Notifications). New saves get the controls as four texts; F10 > Text me the controls resends them. In M2 they move into Mail.
 
 ### 11a. Addresses
 
