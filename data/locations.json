@@ -1,0 +1,17 @@
+[
+  { "id": "svc_hospital_central", "label": "Central Los Santos Medical", "x": 307.8,  "y": -1433.4, "z": 29.9, "heading": 0, "tags": [ "service.medical", "city" ] },
+  { "id": "svc_hospital_mount_zonah", "label": "Mount Zonah Medical",     "x": -449.7, "y": -340.3,  "z": 34.5, "heading": 0, "tags": [ "service.medical", "city" ] },
+  { "id": "svc_hospital_sandy",   "label": "Sandy Shores Medical Center", "x": 1839.6, "y": 3672.9,  "z": 34.3, "heading": 0, "tags": [ "service.medical", "blaine" ] },
+  { "id": "svc_hospital_paleto",  "label": "Paleto Bay Medical",          "x": -247.2, "y": 6331.1,  "z": 32.4, "heading": 0, "tags": [ "service.medical", "paleto" ] },
+
+  { "id": "svc_police_missionrow","label": "Mission Row Police Station",  "x": 425.1,  "y": -979.5,  "z": 30.7, "heading": 0, "tags": [ "service.police", "city" ] },
+  { "id": "svc_sheriff_sandy",    "label": "Blaine County Sheriff (Sandy)","x": 1853.2, "y": 3686.5,  "z": 34.3, "heading": 0, "tags": [ "service.police", "blaine" ] },
+  { "id": "svc_sheriff_paleto",   "label": "Blaine County Sheriff (Paleto)","x": -446.1,"y": 6012.3,  "z": 31.7, "heading": 0, "tags": [ "service.police", "paleto" ] },
+  { "id": "svc_jail_bolingbroke", "label": "Bolingbroke Penitentiary",    "x": 1854.0, "y": 2622.0,  "z": 45.7, "heading": 270, "tags": [ "service.police", "jail" ], "verify": true },
+
+  { "id": "arrival_lsia",         "label": "LSIA Arrivals",               "x": -1037.0,"y": -2737.0, "z": 20.2, "heading": 330, "tags": [ "spawn.arrival" ], "verify": true },
+
+  { "id": "dump_la_puerta",       "label": "Scrapyard (La Puerta)",       "x": -540.0, "y": -1700.0, "z": 19.0, "heading": 0, "tags": [ "dump.stolen_car" ], "verify": true },
+  { "id": "dump_sandy",           "label": "Junkyard (Sandy Shores)",     "x": 2350.0, "y": 3135.0,  "z": 48.2, "heading": 0, "tags": [ "dump.stolen_car" ], "verify": true },
+  { "id": "dump_paleto",          "label": "Lumber yard (Paleto)",        "x": -560.0, "y": 5300.0,  "z": 70.2, "heading": 0, "tags": [ "dump.stolen_car" ], "verify": true }
+]

@@ -1,0 +1,47 @@
+[
+  {
+    "id": "pad_bay_shop",
+    "label": "Bay Shop",
+    "area": "East Los Santos",
+    "perk": "Close to city gig demand",
+    "drawback": "Gang territory, higher theft risk",
+    "weeklyRent": 150,
+    "heatDecayMultiplier": 1.0,
+    "door":         { "x": 850.0, "y": -1070.0, "z": 28.0, "heading": 0 },
+    "bed":          { "x": 852.0, "y": -1068.0, "z": 28.0, "heading": 0 },
+    "workbench":    { "x": 848.0, "y": -1066.0, "z": 28.0, "heading": 0 },
+    "stash":        { "x": 853.0, "y": -1072.0, "z": 28.0, "heading": 0 },
+    "vehicleSpawn": { "x": 845.0, "y": -1075.0, "z": 28.0, "heading": 90 },
+    "verify": true
+  },
+  {
+    "id": "pad_route68",
+    "label": "Route 68 Garage",
+    "area": "Harmony",
+    "perk": "Cheap rent, quiet, good for chop work",
+    "drawback": "Long drives to city jobs",
+    "weeklyRent": 80,
+    "heatDecayMultiplier": 1.25,
+    "door":         { "x": 1180.0, "y": 2650.0, "z": 37.8, "heading": 0 },
+    "bed":          { "x": 1182.0, "y": 2652.0, "z": 37.8, "heading": 0 },
+    "workbench":    { "x": 1178.0, "y": 2648.0, "z": 37.8, "heading": 0 },
+    "stash":        { "x": 1183.0, "y": 2648.0, "z": 37.8, "heading": 0 },
+    "vehicleSpawn": { "x": 1175.0, "y": 2660.0, "z": 37.8, "heading": 0 },
+    "verify": true
+  },
+  {
+    "id": "pad_paleto_barn",
+    "label": "Paleto Barn Shop",
+    "area": "Paleto Bay",
+    "perk": "Off the radar, heat fades fastest",
+    "drawback": "Far from everything, few contracts",
+    "weeklyRent": 60,
+    "heatDecayMultiplier": 1.75,
+    "door":         { "x": 110.0, "y": 6627.0, "z": 31.8, "heading": 0 },
+    "bed":          { "x": 112.0, "y": 6629.0, "z": 31.8, "heading": 0 },
+    "workbench":    { "x": 108.0, "y": 6625.0, "z": 31.8, "heading": 0 },
+    "stash":        { "x": 113.0, "y": 6625.0, "z": 31.8, "heading": 0 },
+    "vehicleSpawn": { "x": 104.0, "y": 6635.0, "z": 31.5, "heading": 45 },
+    "verify": true
+  }
+]
