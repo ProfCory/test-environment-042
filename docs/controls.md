@@ -14,6 +14,7 @@ In game, the same list arrives as phone-style texts on a new game, and as an ema
 | **F3** | Free cam | Menyoo |
 | **Shift + X** | Freemode Identity menu (look, wallet, master switch) | Freemode Identity |
 | **F4** | SHVDN console (script errors show here) | ScriptHookVDotNet |
+| **Insert** | Reload all scripts (picks up a new deploy without restarting) | ScriptHookVDotNet |
 | **Backspace** | Back / close a menu | Menus |
 
 ### One-time character setup
