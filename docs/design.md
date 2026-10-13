@@ -272,7 +272,9 @@ Built on **iFruitAddon2** contacts plus picture-message notifications that look 
 
 Text examples: rent reminders, job offers, "your package is ready", gang threats when rep drops, a fence offering a deal.
 
-Until M2, texts are feed notifications (rereadable in Pause > Brief > Notifications). New saves get the controls as four texts; F10 > Text me the controls resends them. In M2 they move into Mail.
+Until M2, texts are feed notifications (rereadable in Pause > Brief > Notifications). New saves get the controls as four texts; F10 > Text me the controls resends them.
+
+**Mail is built early (M0)** as F10 > Mail, so notes and test steps can be sent to the player during development: drop a `.txt` into `scripts/AnotherLife/mail/inbox/` and it's delivered with a text ping. The mailbox (`mail/mailbox.json`) is separate from the save. In M2 it moves onto the phone and the game starts sending its own mail (receipts, notices) through `Mailbox.Send`.
 
 ### 11a. Addresses
 

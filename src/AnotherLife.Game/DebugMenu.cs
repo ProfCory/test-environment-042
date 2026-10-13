@@ -15,6 +15,7 @@ namespace AnotherLife.InGame
 
         readonly Main main;
         readonly NativeItem status = new NativeItem("Status");
+        readonly NativeItem mailItem;
         readonly NativeMenu checks = new NativeMenu("Another Life", "Roll a check");
         readonly NativeMenu teleports = new NativeMenu("Another Life", "Go to (verify coords)");
 
@@ -25,6 +26,7 @@ namespace AnotherLife.InGame
             SubMenus.Add(teleports);
 
             Root.Add(status);
+            mailItem = Root.AddSubMenu(main.Mail.Inbox, "Reread anything sent to you");
             Add(Root, "Text me the controls", Texts.Controls);
             Add(Root, "+$100 cash", () => main.Player.Cash += 100);
             Add(Root, "+$1,000 bank (opens account, gives card)", () =>
@@ -70,6 +72,7 @@ namespace AnotherLife.InGame
         void Rebuild ()
         {
             var p = main.Player;
+            mailItem.Title = main.Mail.Title;
             status.Title = $"${p.Cash} cash | ${p.Bank} bank | {p.Crypto:0.###} crypto";
             status.Description =
                 $"Crypto rate ${p.CryptoRate:0}. Bond debt ${p.BondDebt}. Collectors: {(p.CollectorsActive ? "ON" : "off")}. " +

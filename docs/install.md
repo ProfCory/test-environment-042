@@ -61,6 +61,8 @@ The mod creates these on first run:
       save/slot1.json   <- your save (slot1.json.bak = the one before)
       log.txt           <- errors and events
       positions.txt     <- spots you capture with "Log my position"
+      mail/inbox/       <- drop a .txt here to email yourself (F10 > Mail)
+      mail/mailbox.json <- your inbox, kept apart from the save
 ```
 
 If you already have a newer `LemonUI.SHVDN3.dll` or `Newtonsoft.Json.dll` from another mod, keep the newer one.

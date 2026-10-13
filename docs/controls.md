@@ -1,6 +1,6 @@
 # Controls & Commands
 
-In game, the same list arrives as phone-style texts on a new game. Reread them any time in **Pause > Brief > Notifications**, or resend with **F10 > Text me the controls**.
+In game, the same list arrives as phone-style texts on a new game, and as an email in **F10 > Mail**. Texts stay in **Pause > Brief > Notifications**; resend them with **F10 > Text me the controls**.
 
 ## In game
 
@@ -22,6 +22,21 @@ In game, the same list arrives as phone-style texts on a new game. Reread them a
 2. Build the look; dress in grey sweats, plain T-shirt, white sneakers.
 3. **Shift + X** Freemode Identity → master switch on → **Save**.
 4. Quit, and have Claude set `[Penalties] Enabled = False` / `Confiscate = False` in `FreemodeIdentity.ini`.
+
+## Mail
+
+**F10 > Mail** is an inbox you can reread: setup notes, test steps, reminders. Unread mail is yellow; open one to read it, Backspace to go back, or delete it at the bottom.
+
+To send one, drop a `.txt` into `scripts\AnotherLife\mail\inbox\` (in game or not). Within 5 seconds it's delivered with a "New email" text, and the file moves to `inbox\delivered\`.
+
+```
+From: Claude
+Subject: Test the ATM fee
+
+Withdraw $20 and check the bank drops by $23.
+```
+
+The header lines are optional; without them the file name is the subject. Mail is kept in `mail\mailbox.json`, apart from your save, so "Start a new game" doesn't wipe it.
 
 ## On the PC (PowerShell, from `C:\Dev\anotherlife`)
 

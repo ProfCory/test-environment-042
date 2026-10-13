@@ -35,6 +35,7 @@ namespace AnotherLife.InGame
         internal readonly AddressHud Address;
         internal readonly CashBridge Cash;
         readonly Terminals terminals;
+        internal readonly MailMenu Mail;
         int stripWeaponsUntil;
         bool controlsTextPending;   // new saves get the controls texts once the game is on screen
 
@@ -59,11 +60,15 @@ namespace AnotherLife.InGame
             Address = new AddressHud(this);
             Cash = new CashBridge(this);
             terminals = new Terminals(this);
+            Directory.CreateDirectory(Paths.MailInbox);
+            Mail = new MailMenu(this);
             menu = new DebugMenu(this);
             pool.Add(menu.Root);
             foreach (var sub in menu.SubMenus) pool.Add(sub);
             pool.Add(terminals.AtmMenu);
             pool.Add(terminals.PayphoneMenu);
+            pool.Add(Mail.Inbox);
+            pool.Add(Mail.Reader);
 
             Tick += OnTick;
             KeyDown += OnKeyDown;
@@ -145,6 +150,7 @@ namespace AnotherLife.InGame
             Cash.Tick(delta);
             Address.Tick(delta);
             terminals.Tick(delta);
+            Mail.Tick(delta);
             StripWeaponsIfPending();
             SendControlsIfPending();
             AdvanceClock(delta);
@@ -311,7 +317,7 @@ namespace AnotherLife.InGame
 
     internal sealed class Paths
     {
-        public readonly string Root, Data, Save, Log, Positions;
+        public readonly string Root, Data, Save, Log, Positions, Mailbox, MailInbox;
 
         public Paths (string scriptsDir)
         {
@@ -320,6 +326,8 @@ namespace AnotherLife.InGame
             Save = Path.Combine(Root, "save", "slot1.json");
             Log = Path.Combine(Root, "log.txt");
             Positions = Path.Combine(Root, "positions.txt");
+            Mailbox = Path.Combine(Root, "mail", "mailbox.json");
+            MailInbox = Path.Combine(Root, "mail", "inbox");
         }
     }
 

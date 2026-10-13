@@ -14,7 +14,7 @@ namespace AnotherLife.InGame
             Notification.Show(NotificationIcon.Default, from, "Controls 1/4", "~b~F10~s~ Another Life menu. ~b~F9~s~ reload data. ~b~E~s~ at ATMs and payphones.");
             Notification.Show(NotificationIcon.Default, from, "Controls 2/4", "~b~F8~s~ Menyoo. ~b~F7~s~ Spooner. ~b~F3~s~ free cam. ~b~Shift+X~s~ Freemode Identity.");
             Notification.Show(NotificationIcon.Default, from, "Controls 3/4", "~b~F4~s~ SHVDN console. ~b~Backspace~s~ backs out of menus.");
-            Notification.Show(NotificationIcon.Default, from, "Controls 4/4", "Reread: Pause > Brief > Notifications. Resend: F10 > Text me the controls.");
+            Notification.Show(NotificationIcon.Default, from, "Controls 4/4", "Reread: Pause > Brief > Notifications. Your emails: F10 > Mail.");
         }
 
         public static void Death (DeathResult r)
