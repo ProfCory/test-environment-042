@@ -9,13 +9,15 @@ Install these into your GTA V folder (the one with `GTA5.exe`), skipping any you
 | What | Where to get it | Files that go in the GTA V folder |
 |---|---|---|
 | Script Hook V | dev-c.com/gtav/scripthookv | `ScriptHookV.dll`, `dinput8.dll` (the ASI loader) |
-| ScriptHookVDotNet 3 (v3.6.0 or newer) | github.com/scripthookvdotnet/scripthookvdotnet/releases | `ScriptHookVDotNet.asi`, `ScriptHookVDotNet2.dll`, `ScriptHookVDotNet3.dll` |
+| **Script Hook V .NET Enhanced** (1.1.0.6+, works on Legacy too) | gta5-mods.com/tools/script-hook-v-net-enhanced | `ScriptHookVDotNet.asi`, `ScriptHookVDotNet2.dll`, `ScriptHookVDotNet3.dll`, `ScriptHookVDotNet.ini`, `MinHook.x64.dll` |
 | .NET Framework 4.8 | Built into Windows 10/11 | — |
 | LemonUI (SHVDN3) | github.com/LemonUIbyLemon/LemonUI/releases | `scripts/LemonUI.SHVDN3.dll` (also shipped in our zip) |
 | **Freemode Identity** 1.1.7+ | gta5-mods.com/scripts/freemode-identity | `FreemodeIdentity.dll` in `scripts/`, its `.asi` shim in the GTA V folder |
 | **Menyoo PC** | gta5-mods.com (Menyoo PC) | Per its readme |
 
 Make a `scripts` folder in the GTA V folder if there isn't one.
+
+**Use the Enhanced build of ScriptHookVDotNet, not the official one.** Freemode Identity is built against it (its API reports as 3.9.0); on the official 3.7.0 nightly it fails to load (`ScriptHookVDotNet.log`: "Could not load ... ScriptHookVDotNet3, Version=3.9.0.0"), so there's no menu and no wallet.
 
 **Menyoo's Spooner key is F9 by default, which clashes with Another Life's data reload.** In `menyooStuff/menyooConfig.ini` set `SpoonerModeHotkey = 118` (F7).
 
