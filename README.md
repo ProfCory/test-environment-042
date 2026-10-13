@@ -2,13 +2,13 @@
 
 A single-player GTA V story-mode life sim built on ScriptHookVDotNet. You land at LSIA with a fake ID, $40 and a burner phone, work gig-app contracts, get licensed, and move up. Or you don't.
 
-- [Design v0.2](docs/design.md)
+- [Design v0.3](docs/design.md)
 - [Install](docs/install.md)
 - [M0 test checklist](docs/test-checklist-m0.md)
 
 ## Status
 
-**M0 skeleton built:** loads in story mode, JSON data with F9 hot-reload, save/load, d20 checks with practice-based skills, death/arrest/debt rules, F10 debug menu. Next: **M1**, the character creator, arrival and crash pads.
+**M0 skeleton built:** loads in story mode, JSON data with F9 hot-reload, save/load, d20 checks with practice-based skills, death/arrest/debt rules, addresses with postal codes, F10 debug menu. Next: **M1**, the character creator, arrival and crash pads.
 
 ## Build
 
@@ -30,3 +30,7 @@ src/AnotherLife.Game/     the ScriptHookVDotNet script (net48)
 tests/                    xUnit tests for Core
 build/package.sh          release zip
 ```
+
+## Credits
+
+- Postal codes: [DevBlocky/nearest-postal](https://github.com/DevBlocky/nearest-postal) `new-postals.json` (MIT, `licenses/nearest-postal.LICENSE`).

@@ -10,6 +10,7 @@ namespace AnotherLife.Core.Data
         public Dictionary<string, ItemDef> Items = new Dictionary<string, ItemDef>();
         public List<LocationDef> Locations = new List<LocationDef>();
         public List<CrashPadDef> CrashPads = new List<CrashPadDef>();
+        public List<PostalDef> Postals = new List<PostalDef>();
 
         public ItemDef Item (string id) => id != null && Items.TryGetValue(id, out var def) ? def : null;
     }
@@ -23,6 +24,13 @@ namespace AnotherLife.Core.Data
         public DiceRules Dice = new DiceRules();
         public SkillRules Skills = new SkillRules();
         public DumpRules StolenCarDump = new DumpRules();
+        public HudRules Hud = new HudRules();
+    }
+
+    public sealed class HudRules
+    {
+        // Shows "4021 | Elgin Ave, Downtown" beside the minimap.
+        public bool ShowAddress = true;
     }
 
     public sealed class StartRules
@@ -165,6 +173,14 @@ namespace AnotherLife.Core.Data
         public Point Stash = new Point();
         public Point VehicleSpawn = new Point();
         public bool Verify;
+    }
+
+    // Postal code points from DevBlocky/nearest-postal (new-postals.json, MIT).
+    // A position's postal is the code of the closest point.
+    public sealed class PostalDef
+    {
+        public string Code;
+        public float X, Y;
     }
 
     public sealed class Point

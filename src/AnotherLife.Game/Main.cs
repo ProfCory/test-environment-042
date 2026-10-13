@@ -32,6 +32,7 @@ namespace AnotherLife.InGame
 
         readonly ObjectPool pool = new ObjectPool();
         readonly DebugMenu menu;
+        internal readonly AddressHud Address;
 
         bool wasDead;
         bool wasArrested;
@@ -51,6 +52,7 @@ namespace AnotherLife.InGame
             LoadData(announce: false);
             LoadOrCreateSave();
 
+            Address = new AddressHud(this);
             menu = new DebugMenu(this);
             pool.Add(menu.Root);
             foreach (var sub in menu.SubMenus) pool.Add(sub);
@@ -126,6 +128,7 @@ namespace AnotherLife.InGame
             int delta = lastTick == 0 ? 0 : Math.Min(now - lastTick, 1000);
             lastTick = now;
 
+            Address.Tick(delta);
             AdvanceClock(delta);
             WatchDeathAndArrest();
             EnforcePermanentStar(delta);
@@ -248,8 +251,8 @@ namespace AnotherLife.InGame
             var ped = Game.Player.Character;
             var p = ped.Position;
             string line = string.Format(System.Globalization.CultureInfo.InvariantCulture,
-                "{0:yyyy-MM-dd HH:mm}  {1}  \"x\": {2:0.0}, \"y\": {3:0.0}, \"z\": {4:0.0}, \"heading\": {5:0}",
-                DateTime.Now, label, p.X, p.Y, p.Z, ped.Heading);
+                "{0:yyyy-MM-dd HH:mm}  {1}  \"x\": {2:0.0}, \"y\": {3:0.0}, \"z\": {4:0.0}, \"heading\": {5:0}  ({6})",
+                DateTime.Now, label, p.X, p.Y, p.Z, ped.Heading, Address.AddressOf(p));
             File.AppendAllText(Paths.Positions, line + Environment.NewLine);
             Notification.Show("Logged: " + label);
         }

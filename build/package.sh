@@ -14,6 +14,7 @@ dotnet build src/AnotherLife.Game -c Release --nologo -v quiet
 bin="src/AnotherLife.Game/bin/Release/net48"
 cp "$bin/AnotherLife.Game.dll" "$bin/AnotherLife.Core.dll" "$bin/Newtonsoft.Json.dll" "$bin/LemonUI.SHVDN3.dll" "$out/scripts/"
 cp data/*.json "$out/scripts/AnotherLife/data/"
+cp -r licenses "$out/licenses"
 cp docs/install.md "$out/INSTALL.md"
 cp docs/test-checklist-m0.md "$out/TEST-CHECKLIST.md"
 

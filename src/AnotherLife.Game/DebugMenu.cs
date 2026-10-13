@@ -43,6 +43,13 @@ namespace AnotherLife.InGame
             Add(Root, "Simulate death penalty", () => Texts.Death(Penalties.ApplyDeath(main.Player, main.Data, Pos.X, Pos.Y, Pos.Z)));
             Add(Root, "Simulate arrest penalty", () => Texts.Arrest(Penalties.ApplyArrest(main.Player, main.Data, Pos.X, Pos.Y, Pos.Z, null)));
             Add(Root, "Clear fake ID flag", () => main.Player.FakeIdFlagged = false);
+            Add(Root, "Where am I?", () => Notification.Show(main.Address.AddressOf(Pos)));
+            Add(Root, "GPS to postal", () =>
+            {
+                var code = Game.GetUserInput("postal");
+                if (string.IsNullOrWhiteSpace(code)) return;
+                Notification.Show(main.Address.RouteTo(code) ? $"Route set to #{code.Trim().TrimStart('#')}." : $"~r~No postal {code}.");
+            });
             Add(Root, "Log my position", () => main.LogPosition(Game.GetUserInput("label") ?? "spot"));
             Root.AddSubMenu(teleports, "Go to (verify coords)");
             Add(Root, "Reload data (F9)", () => main.LoadData(announce: true));

@@ -21,6 +21,7 @@ namespace AnotherLife.Core.Data
         public const string Items = "items.json";
         public const string Locations = "locations.json";
         public const string CrashPads = "crashpads.json";
+        public const string Postals = "postals.json";
 
         static readonly JsonSerializerSettings Settings = new JsonSerializerSettings
         {
@@ -37,6 +38,7 @@ namespace AnotherLife.Core.Data
             data.Checks = Read<ChecksData>(dataDir, Checks, result.Errors) ?? new ChecksData();
             data.Locations = Read<List<LocationDef>>(dataDir, Locations, result.Errors) ?? new List<LocationDef>();
             data.CrashPads = Read<List<CrashPadDef>>(dataDir, CrashPads, result.Errors) ?? new List<CrashPadDef>();
+            data.Postals = Read<List<PostalDef>>(dataDir, Postals, result.Errors) ?? new List<PostalDef>();
 
             var items = Read<List<ItemDef>>(dataDir, Items, result.Errors) ?? new List<ItemDef>();
             foreach (var item in items)
@@ -95,6 +97,12 @@ namespace AnotherLife.Core.Data
             foreach (var l in data.Locations)
             {
                 if (!locationIds.Add(l.Id)) errors.Add($"{Locations}: duplicate id '{l.Id}'");
+            }
+
+            var postalCodes = new HashSet<string>();
+            foreach (var postal in data.Postals)
+            {
+                if (!postalCodes.Add(postal.Code)) errors.Add($"{Postals}: duplicate code '{postal.Code}'");
             }
 
             foreach (var grant in data.Rules.Start.Items)

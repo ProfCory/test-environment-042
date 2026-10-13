@@ -1,5 +1,7 @@
-# Another Life (SP): Design v0.2
+# Another Life (SP): Design v0.3
 
+> **v0.3:** addresses and postal codes (§11a), built into M0.
+>
 > **v0.2 changes:** character creator + ID photo, starting outfit, death/arrest/debt rules (§4a), dice overlay and practice-based skills (§8), crash pads as exterior pins (§3), phone ride/delivery services (§11), stolen-car dumps (§8). M0 skeleton built.
 
 > A single-player GTA V story-mode mod built on ScriptHookVDotNet. You arrive at LSIA with nothing but a fake ID and a phone, running from something back home. You take gig-app work, keep your head down, get legitimate and move up, or you don't.
@@ -264,6 +266,16 @@ Built on **iFruitAddon2** contacts plus picture-message notifications that look 
 | **Order** | Delivery of shop items (food, drink, tools, clothes) to where you are or to your crash pad. Shop price **+10% + $15**. Illegal goods are paid in crypto at the day's rate. Fewer shops need to exist on the map. |
 
 Text examples: rent reminders, job offers, "your package is ready", gang threats when rep drops, a fence offering a deal.
+
+### 11a. Addresses
+
+Every spot on the map has an address: **nearest postal + street + zone**, e.g. **#4021 Elgin Ave, Downtown**.
+
+- **Postals:** 1,687 points from [DevBlocky/nearest-postal](https://github.com/DevBlocky/nearest-postal) (`new-postals.json`, MIT) in `data/postals.json`. Your postal is the code of the closest point.
+- **Street and zone** come from the game (`World.GetStreetName`, `World.GetZoneLocalizedName`).
+- Shown beside the minimap: `4021 | Elgin Ave | Downtown` (turn it off with `hud.showAddress` in `rules.json`).
+- **Used by:** job offers ("Pickup #3150 → Drop #1204"), GPS to a postal from the phone, deliveries ("to #2210"), property listings, police texts ("shots near #4021"), and zones rolled up into reputation districts.
+- **Optional:** a pause-map texture with the postal numbers printed on it (the "New & Improved Postal Map" art) can be installed separately; the codes match `new-postals.json`.
 
 ---
 

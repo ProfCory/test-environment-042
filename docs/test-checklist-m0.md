@@ -47,8 +47,15 @@ Takes about 15 minutes. Tick each box, and for anything that fails, note what ha
 - [ ] Quit to desktop, relaunch → status shows the same money
 - [ ] Break `rules.json` on purpose (delete a comma), press F9 → a red "Data error" message appears and the game keeps running. Fix it and press F9 → "Data reloaded."
 
+## Addresses
+
+- [ ] Beside the minimap: `<postal> | <street> | <zone>`, updating as you drive
+- [ ] F10 → `Where am I?` shows the full address, e.g. `#4021 Elgin Ave, Downtown`
+- [ ] F10 → `GPS to postal` → type a code (e.g. `2000`) → a waypoint appears; a bad code says "No postal"
+- [ ] Set `"showAddress": false` under `hud` in `rules.json`, press F9 → the address disappears
+
 ## Coordinates (helps M1)
 
 - [ ] F10 → Go to → each crash pad and location marked `*`: does it land somewhere sensible (not underground, not in the sea)?
-- [ ] For any bad one, walk to where it *should* be and use `Log my position` with a label → send me `positions.txt`
+- [ ] For any bad one, walk to where it *should* be and use `Log my position` with a label → send me `positions.txt` (each line now includes the address)
 - [ ] Bonus: stand where you'd want the bed, workbench, stash and car spawn for each crash pad and log those too
